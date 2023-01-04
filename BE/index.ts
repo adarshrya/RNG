@@ -9,7 +9,7 @@ const port = process.env.PORT;
 app.use(express.json())
 const prisma = new PrismaClient()
 app.get('/', (req: Request, res: Response) => {
-    res.send('Express + TypeScript Server');
+    res.send('Exp ress + TypeScript Server');
 });
 
 app.post(`/todo`, async (req, res) => {
