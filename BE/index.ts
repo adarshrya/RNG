@@ -12,7 +12,7 @@ app.get('/', (req: Request, res: Response) => {
     res.send('Exp ress + TypeScript Server');
 });
 
-app.post(`/todo`, async (req, res) => {
+app.post(`/api/todo`, async (req, res) => {
     const { text } = req.body
     const result = await prisma.todo.create({
         data: {
@@ -24,7 +24,7 @@ app.post(`/todo`, async (req, res) => {
     res.json(result)
 })
 
-app.put('/todo/:id/edit', async (req, res) => {
+app.put('/api/todo/:id/edit', async (req, res) => {
     const { id } = req.params
     const { text } = req.body
     try {
@@ -59,7 +59,7 @@ app.put('/todo/:id/done', async (req, res) => {
     }
 })
 
-app.delete('/todo/:id', async (req, res) => {
+app.delete('/api/todo/:id', async (req, res) => {
     const { id } = req.params
     try {
         var post = await prisma.todo.delete({
@@ -73,7 +73,7 @@ app.delete('/todo/:id', async (req, res) => {
     }
 })
 
-app.get('/todo', async (req, res) => {
+app.get('/api/todo', async (req, res) => {
     var posts = await prisma.todo.findMany()
     res.json(posts)
 })
