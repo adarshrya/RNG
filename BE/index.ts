@@ -42,7 +42,7 @@ app.put('/api/todo/:id/edit', async (req, res) => {
     }
 })
 
-app.put('/todo/:id/done', async (req, res) => {
+app.put('/api/todo/:id/done', async (req, res) => {
     const { id } = req.params
     try {
         var post = await prisma.todo.update({
