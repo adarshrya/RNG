@@ -23,7 +23,7 @@ const prisma = new client_1.PrismaClient();
 app.get('/', (req, res) => {
     res.send('Exp ress + TypeScript Server');
 });
-app.post(`/todo`, (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+app.post(`/api/todo`, (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { text } = req.body;
     const result = yield prisma.todo.create({
         data: {
@@ -34,7 +34,7 @@ app.post(`/todo`, (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     });
     res.json(result);
 }));
-app.put('/todo/:id/edit', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+app.put('/api/todo/:id/edit', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { id } = req.params;
     const { text } = req.body;
     try {
@@ -52,7 +52,7 @@ app.put('/todo/:id/edit', (req, res) => __awaiter(void 0, void 0, void 0, functi
         res.json({ error: `Post with ID ${id} does not exist in the database` });
     }
 }));
-app.put('/todo/:id/done', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+app.put('/api/todo/:id/done', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { id } = req.params;
     try {
         var post = yield prisma.todo.update({
@@ -69,7 +69,7 @@ app.put('/todo/:id/done', (req, res) => __awaiter(void 0, void 0, void 0, functi
         res.json({ error: `Post with ID ${id} does not exist in the database` });
     }
 }));
-app.delete('/todo/:id', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+app.delete('/api/todo/:id', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { id } = req.params;
     try {
         var post = yield prisma.todo.delete({
@@ -83,8 +83,14 @@ app.delete('/todo/:id', (req, res) => __awaiter(void 0, void 0, void 0, function
         res.json({ error: `todo with ID ${id} does not exist in the database` });
     }
 }));
-app.get('/todo', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    var posts = yield prisma.todo.findMany();
+app.get('/api/todo', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    var posts = yield prisma.todo.findMany({
+        orderBy: [
+            {
+                created_at: 'desc',
+            }
+        ]
+    });
     res.json(posts);
 }));
 app.listen(port, () => {
