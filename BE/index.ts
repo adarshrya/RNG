@@ -74,7 +74,14 @@ app.delete('/api/todo/:id', async (req, res) => {
 })
 
 app.get('/api/todo', async (req, res) => {
-    var posts = await prisma.todo.findMany()
+    var posts = await prisma.todo.findMany(
+        {
+            orderBy: [
+                {
+                    created_at: 'desc',
+                }]
+        }
+    )
     res.json(posts)
 })
 
