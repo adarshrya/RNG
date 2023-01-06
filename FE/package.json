@@ -11,6 +11,7 @@
     "@types/react": "^18.0.26",
     "@types/react-dom": "^18.0.10",
     "axios": "^1.2.2",
+    "concurrently": "^7.6.0",
     "http-proxy-middleware": "^2.0.6",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -19,8 +20,14 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
+    "start":"concurrently \"npm run startBE\" \"npm run startFE\"",
+    "startBE": "cd ../BE && concurrently \"npx tsc --watch\" \"nodemon dist/index.js\"",
+    "startFE": "react-scripts start",
+    "build":"npm run buildFE & npm run buildBE && npm run Copybuild",
+    "buildFE": "react-scripts build",
+    "buildBE": "cd ../BE && npm i && tsc",
+    "Copybuild":"move build ../BE/dist/",
+    "serve":"cd ../BE && node dist/index.js",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
@@ -41,5 +48,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.20"
   }
 }

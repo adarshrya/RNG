@@ -1,6 +1,7 @@
 import express, { Express, Request, Response } from 'express';
 import dotenv from 'dotenv';
 import { Prisma, PrismaClient } from '@prisma/client'
+const path = require('path');
 
 dotenv.config();
 
@@ -8,7 +9,8 @@ const app: Express = express();
 const port = process.env.PORT;
 app.use(express.json())
 const prisma = new PrismaClient()
-app.get('/', (req: Request, res: Response) => {
+
+app.get('/Test', (req: Request, res: Response) => {
     res.send('Exp ress + TypeScript Server');
 });
 
@@ -84,6 +86,11 @@ app.get('/api/todo', async (req, res) => {
     )
     res.json(posts)
 })
+app.use(express.static(path.join(__dirname, 'build')));
+
+app.get('/', function (req, res) {
+    res.sendFile(path.join(__dirname, 'build', 'index.html'));
+});
 
 app.listen(port, () => {
     console.log(`⚡️[server]: Server is running at http://localhost:${port}`);

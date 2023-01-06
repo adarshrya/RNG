@@ -15,12 +15,13 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const dotenv_1 = __importDefault(require("dotenv"));
 const client_1 = require("@prisma/client");
+const path = require('path');
 dotenv_1.default.config();
 const app = (0, express_1.default)();
 const port = process.env.PORT;
 app.use(express_1.default.json());
 const prisma = new client_1.PrismaClient();
-app.get('/', (req, res) => {
+app.get('/Test', (req, res) => {
     res.send('Exp ress + TypeScript Server');
 });
 app.post(`/api/todo`, (req, res) => __awaiter(void 0, void 0, void 0, function* () {
@@ -93,6 +94,10 @@ app.get('/api/todo', (req, res) => __awaiter(void 0, void 0, void 0, function* (
     });
     res.json(posts);
 }));
+app.use(express_1.default.static(path.join(__dirname, 'build')));
+app.get('/', function (req, res) {
+    res.sendFile(path.join(__dirname, 'build', 'index.html'));
+});
 app.listen(port, () => {
     console.log(`⚡️[server]: Server is running at http://localhost:${port}`);
 });
