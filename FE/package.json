@@ -23,7 +23,7 @@
     "start":"concurrently \"npm run startBE\" \"npm run startFE\"",
     "startBE": "cd ../BE && concurrently \"npx tsc --watch\" \"nodemon dist/index.js\"",
     "startFE": "react-scripts start",
-    "build":"npm run buildFE & npm run buildBE && npm run Copybuild",
+    "build":"npm i && npm run buildFE & npm run buildBE && npm run Copybuild",
     "buildFE": "react-scripts build",
     "buildBE": "cd ../BE && npm i && tsc",
     "Copybuild":"move build ../BE/dist/",
