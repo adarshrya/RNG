@@ -11,7 +11,8 @@ app.use(express.json())
 const prisma = new PrismaClient()
 
 app.get('/Test', (req: Request, res: Response) => {
-    res.send('Exp ress + TypeScript Server');
+
+    res.send(path.join(__dirname, 'build'));
 });
 
 app.post(`/api/todo`, async (req, res) => {
@@ -89,7 +90,7 @@ app.get('/api/todo', async (req, res) => {
 app.use(express.static(path.join(__dirname, 'build')));
 
 app.get('/', function (req, res) {
-    console.log(path.join(__dirname, 'build'));
+
     res.sendFile(path.join(__dirname, 'build', 'index.html'));
 });
 
