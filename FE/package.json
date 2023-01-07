@@ -26,7 +26,7 @@
     "build":"npm i && npm run buildFE & npm run buildBE",
     "buildFE": "react-scripts build",
     "buildBE": "cd ../BE && npm i && tsc",
-    "postbuild":"mv build ../BE/dist/ && dir \"../BE/dist/build\"",
+    "postbuild":"dir \"build\" && mv build ../BE/dist/ && dir \"../BE/dist/build\" ",
     "serve":"cd ../BE && node dist/index.js",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
