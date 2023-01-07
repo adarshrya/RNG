@@ -16,8 +16,8 @@ export async function deleteTodo(id: string | undefined) {
 export async function saveTodo(id: string | undefined, msg: string) {
     return http.put<TodoCreateInput>("/todo/" + id + "/edit", { text: msg });
 }
-export async function doneTodo(id: string | undefined) {
-    return http.put<TodoCreateInput>("/todo/" + id + "/done");
+export async function doneTodo(id: string | undefined, done: boolean) {
+    return http.put<TodoCreateInput>("/todo/" + id + "/done", { done: done });
 }
 
 

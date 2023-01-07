@@ -48,9 +48,10 @@ app.put('/api/todo/:id/edit', async (req, res) => {
 app.put('/api/todo/:id/done', async (req, res) => {
     const { id } = req.params
     try {
+        const { done } = req.body
         var post = await prisma.todo.update({
             data: {
-                done: true,
+                done: done,
             },
             where: {
                 uid: id
