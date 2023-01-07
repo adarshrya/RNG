@@ -25,9 +25,9 @@
     "startFE": "react-scripts start",
     "build":"npm i && npm run buildFE & npm run buildBE",
     "buildFE": "react-scripts build",
-    "buildBE": "cd ../BE && npm i && tsc",
-    "postbuild":"mv build ../BE/dist/",
-    "serve":"cd ../BE && node dist/index.js",
+    "buildBE": "cd ../be && npm i && tsc",
+    "postbuild":"mv build ../be/dist/ && dir \"../be/dist\"",
+    "serve":"cd ../be && node dist/index.js",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
