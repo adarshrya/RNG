@@ -20,4 +20,8 @@ export async function doneTodo(id: string | undefined, done: boolean) {
     return http.put<TodoCreateInput>("/todo/" + id + "/done", { done: done });
 }
 
+export async function todoAll(done: boolean) {
+    return http.post<TodoCreateInput>("/todo/" + done);
+}
+
 

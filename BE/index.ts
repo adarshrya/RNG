@@ -26,7 +26,15 @@ app.post(`/api/todo`, async (req, res) => {
     })
     res.json(result)
 })
-
+app.post(`/api/todo/:All`, async (req, res) => {
+    const { All } = req.params
+    const result = await prisma.todo.updateMany({
+        data: {
+            done: All === "true"
+        },
+    })
+    res.json(result)
+})
 app.put('/api/todo/:id/edit', async (req, res) => {
     const { id } = req.params
     const { text } = req.body
